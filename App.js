@@ -14,7 +14,7 @@ export default function App() {
           ...TransitionPresets.SlideFromRightIOS,
         }}
       >
-        <Stack.Screen  name="Login" component={Login} />
+        <Stack.Screen  name="Login" component={Login} options={{...TransitionPresets.DefaultTransition }}/>
         <Stack.Screen  name="Signup" component={Signup} />
       </Stack.Navigator>
     </NavigationContainer>
