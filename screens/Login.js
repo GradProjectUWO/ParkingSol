@@ -207,8 +207,8 @@ const styles = StyleSheet.create({
         ...Fonts.grayColor12Medium,
     },
     loginButtonStyle: {
-        backgroundColor: Colors.primaryColor,
-        shadowColor: Colors.primaryColor,
+        backgroundColor: Colors.greenColor,
+        shadowColor: Colors.greenColor,
         elevation: 2.0,
         borderColor: 'rgba(251, 192, 45, 0.2)',
         borderWidth: 1.0,
