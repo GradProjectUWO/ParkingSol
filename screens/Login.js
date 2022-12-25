@@ -92,7 +92,7 @@ const Login = ({ navigation }) => {
         return (
             <TouchableOpacity
                 activeOpacity={0.9}
-                onPress={() => navigation.push('Signup')}
+                onPress={() => navigation.push('BookSlot')}
                 style={styles.loginButtonStyle}
             >
                 <Text style={{ ...Fonts.whiteColor18Bold }}>
