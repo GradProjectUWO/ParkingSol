@@ -5,6 +5,7 @@ import Mainpage from './screens/Mainpage';
 import Booking from './screens/Booking';
 import Mapping from './screens/Mapping';
 import Profile from './screens/Profile';
+import EditProfile from './screens/EditProfile';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { TransitionPresets, createStackNavigator } from '@react-navigation/stack';
@@ -25,6 +26,7 @@ export default function App() {
         <Stack.Screen  name="Booking" component={Booking} options={{...TransitionPresets.DefaultTransition }}/>
         <Stack.Screen  name="Mapping" component={Mapping} options={{...TransitionPresets.DefaultTransition }}/>
         <Stack.Screen  name="Profile" component={Profile} options={{...TransitionPresets.DefaultTransition }}/>
+        <Stack.Screen  name="EditProfile" component={EditProfile} options={{...TransitionPresets.DefaultTransition }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
