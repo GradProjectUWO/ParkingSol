@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { SafeAreaView, View, StatusBar, ScrollView, TouchableOpacity, FlatList, Dimensions, Image, StyleSheet, Text } from "react-native";
 import { Colors, Fonts, Sizes, } from "../constants/styles";
 import { MaterialIcons } from '@expo/vector-icons';
+
 import DashedLine from 'react-native-dashed-line';
 
 const { width } = Dimensions.get('window');
@@ -46,6 +47,7 @@ const durationsList = [
 
 const parkingslotsList = [
     {
+        // 这个代表entry左边
         entryRight1: [
             {
                 slotNo: 'C101',
@@ -84,6 +86,7 @@ const parkingslotsList = [
                 isAvailable: true,
             },
         ],
+        // 其实这个是在entry的右边最里面的格子
         entryLeft1: [
             {
                 slotNo: 'B101',
@@ -122,6 +125,7 @@ const parkingslotsList = [
                 isAvailable: false,
             },
         ],
+        //entry右边第一个格子
         entryLeft2: [
             {
                 slotNo: 'B201',
@@ -160,6 +164,44 @@ const parkingslotsList = [
                 isAvailable: true,
             },
         ],
+        entryLeft3: [
+            {
+                slotNo: 'B301',
+                isAvailable: true,
+            },
+            {
+                slotNo: 'B302',
+                isAvailable: true,
+            },
+            {
+                slotNo: 'B303',
+                isAvailable: false,
+            },
+            {
+                slotNo: 'B304',
+                isAvailable: true,
+            },
+            {
+                slotNo: 'B305',
+                isAvailable: false,
+            },
+            {
+                slotNo: 'B306',
+                isAvailable: false,
+            },
+            {
+                slotNo: 'B307',
+                isAvailable: true,
+            },
+            {
+                slotNo: 'B308',
+                isAvailable: true,
+            },
+            {
+                slotNo: 'B309',
+                isAvailable: true,
+            },
+        ],
     }
 ];
 
@@ -178,9 +220,9 @@ const BookSlotScreen = ({ navigation }) => {
         selectedPaymentModeIndex,
         selectedParkingSlotNo,
     } = state;
-
-    const slorRowsBeforeExit = 6;
-    const isExitMiddle = true;
+    const entryIndex =1; //表示entry在第几行
+    const slorRowsBeforeExit = 6; //在exit 之前 row的数量
+    const isExitMiddle = true; //判断<----- EXIT----->是不是在中间
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: Colors.whiteColor }}>
@@ -189,6 +231,7 @@ const BookSlotScreen = ({ navigation }) => {
                 {header()}
                 <ScrollView
                     showsVerticalScrollIndicator={false}
+                    harizontal={true}
                 >
                     {selectVehicalInfo()}
                     {selectDurationInfo()}
@@ -216,7 +259,8 @@ const BookSlotScreen = ({ navigation }) => {
 
     function selectParkingSlotInfo() {
         return (
-            <View style={{ margin: Sizes.fixPadding * 2.0, }}>
+
+            <View style={{ margin: Sizes.fixPadding * 2.0, }} >
                 <Text style={{ marginBottom: Sizes.fixPadding, ...Fonts.blackColor16Regular }}>
                     Select Parking Slot
                 </Text>
@@ -290,41 +334,93 @@ const BookSlotScreen = ({ navigation }) => {
         )
     }
 
+    // function beforeExitSlots() {
+    //     //这个 parkingSlotSort 函数使整个页面的关键
+    //     return (
+    //         <View style={{ flexDirection: 'row', }}>
+    //             {
+    //                 //entry 左边第一个 C1
+    //                 parkingslotsList[0].entryRight1
+    //                     ?
+    //                     parkingSlotSort({
+    //                         slotArray: parkingslotsList[0].entryRight1,
+    //                         style: { borderBottomWidth: 1.0 }
+    //                     })
+    //                     :
+    //                     null
+    //             }
+    //             {entryInfo()}
+    //             {
+    //                 //entry右边第一个
+    //                 parkingslotsList[0].entryLeft2
+    //                     ?
+    //                     parkingSlotSort({
+    //                         slotArray: parkingslotsList[0].entryLeft2,
+    //                         style: { borderRightWidth: 1.0, borderBottomWidth: 1.0, borderLeftWidth: 0.0, çborderBottomWidth: 1.0 }
+    //                     })
+    //                     :
+    //                     null
+    //             }
+    //             {
+    //                 //entry右边第二个
+    //                 parkingslotsList[0].entryLeft1
+    //                     ?
+    //                     parkingSlotSort({
+    //                         slotArray: parkingslotsList[0].entryLeft1,
+    //                         style: { borderBottomWidth: 1.0, }
+    //                     })
+    //                     :
+    //                     null
+    //             }
+    //             {
+    //                 //entry右边第二个
+    //                 parkingslotsList[0].entryLeft3
+    //                     ?
+    //                     parkingSlotSort({
+    //                         slotArray: parkingslotsList[0].entryLeft3,
+    //                         style: { borderBottomWidth: 1.0, }
+    //                     })
+    //                     :
+    //                     null
+    //             }
+    //             {
+    //                 //entry右边第二个
+    //                 parkingslotsList[0].entryLeft3
+    //                     ?
+    //                     parkingSlotSort({
+    //                         slotArray: parkingslotsList[0].entryLeft3,
+    //                         style: { borderBottomWidth: 1.0, }
+    //                     })
+    //                     :
+    //                     null
+    //             }
+    //
+    //         </View>
+    //     )
+    // }
     function beforeExitSlots() {
+        const data = [
+            {key: 'entryRight1', value: parkingslotsList[0].entryRight1},
+            {key: 'entryLeft2', value: parkingslotsList[0].entryLeft2},
+            {key: 'entryLeft1', value: parkingslotsList[0].entryLeft1},
+            {key: 'entryLeft3', value: parkingslotsList[0].entryLeft3},
+            {key: 'entryLeft3', value: parkingslotsList[0].entryLeft3},
+        ];
+        let countEntry =0;
         return (
-            <View style={{ flexDirection: 'row', }}>
-                {
-                    parkingslotsList[0].entryRight1
-                        ?
-                        parkingSlotSort({
-                            slotArray: parkingslotsList[0].entryRight1,
-                            style: { borderBottomWidth: 1.0 }
-                        })
-                        :
-                        null
-                }
-                {entryInfo()}
-                {
-                    parkingslotsList[0].entryLeft2
-                        ?
-                        parkingSlotSort({
-                            slotArray: parkingslotsList[0].entryLeft2,
-                            style: { borderRightWidth: 1.0, borderBottomWidth: 1.0, borderLeftWidth: 0.0, çborderBottomWidth: 1.0 }
-                        })
-                        :
-                        null
-                }
-                {
-                    parkingslotsList[0].entryLeft1
-                        ?
-                        parkingSlotSort({
-                            slotArray: parkingslotsList[0].entryLeft1,
-                            style: { borderBottomWidth: 1.0, }
-                        })
-                        :
-                        null
-                }
-            </View>
+            <FlatList
+                data={data}
+                keyExtractor={(item) => item.key}
+                horizontal={true}
+                contentContainerStyle={{ flexDirection: 'row' }}
+                renderItem={({ item }) => (
+                    <View style={{ flexDirection: 'row',}}>
+                        {item.value ? parkingSlotSort({ slotArray: item.value, style: { borderRightWidth: 1.0, borderBottomWidth: 1.0, borderLeftWidth: 0.0, çborderBottomWidth: 1.0 } }) : null}
+                        {item.key==='entryRight1'? entryInfo():null}
+                    </View>
+                )}
+
+            />
         )
     }
 
@@ -382,11 +478,13 @@ const BookSlotScreen = ({ navigation }) => {
     }
 
     function parkingSlotSort({ slotArray, style, afterExit, }) {
+        //after exit 的意思是 当前的这些slot是不是在exit之前或者之后
         var arrayStart = afterExit ? slorRowsBeforeExit : 0;
         var arrayEnd = afterExit ? slotArray.length : slorRowsBeforeExit;
         return (
             <View style={{ flex: 1, }}>
                 {
+                    //这地方负责得失C1 B2 B1 什么的那一块
                     afterExit
                         ?
                         null :
@@ -401,6 +499,7 @@ const BookSlotScreen = ({ navigation }) => {
                             onPress={() => {
                                 item.isAvailable
                                     ?
+                                    //如果当前停车位可以停then更新当前选中的slotNo
                                     updateState({ selectedParkingSlotNo: item.slotNo })
                                     :
                                     null
@@ -416,6 +515,7 @@ const BookSlotScreen = ({ navigation }) => {
                             }}
                         >
                             {
+                                //如果当前slot isAvailable 就显示当前slot的数字 如果不是就显示小汽车图片
                                 item.isAvailable
                                     ?
                                     <Text style={selectedParkingSlotNo == item.slotNo ? { ...Fonts.whiteColor14Regular } : { ...Fonts.grayColor14Regular }}>
