@@ -6,12 +6,17 @@ import Booking from './screens/Booking';
 import Mapping from './screens/Mapping';
 import Profile from './screens/Profile';
 import EditProfile from './screens/EditProfile';
+import BookSlot from "./screens/BookSlot";
 
 import { NavigationContainer } from '@react-navigation/native';
 import { TransitionPresets, createStackNavigator } from '@react-navigation/stack';
-
+import * as Font from 'expo-font';
+import { Ionicons } from '@expo/vector-icons';
 const Stack = createStackNavigator();
+
 export default function App() {
+
+
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -27,6 +32,7 @@ export default function App() {
         <Stack.Screen  name="Mapping" component={Mapping} options={{...TransitionPresets.DefaultTransition }}/>
         <Stack.Screen  name="Profile" component={Profile} options={{...TransitionPresets.DefaultTransition }}/>
         <Stack.Screen  name="EditProfile" component={EditProfile} options={{...TransitionPresets.DefaultTransition }}/>
+          <Stack.Screen  name="BookSlot" component={BookSlot} options={{...TransitionPresets.DefaultTransition }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

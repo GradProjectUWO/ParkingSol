@@ -79,7 +79,7 @@ const Booking = ({navigation}) => {
         
         <View style={[{ width: "90%", margin: 20, backgroundColor: "black" }]}>
             <Button
-                onPress={() => navigation.push('Mapping')}
+                onPress={() => navigation.push('BookSlot')}
                 title="Go to Parking Lots"
                 color="#000000"
                         

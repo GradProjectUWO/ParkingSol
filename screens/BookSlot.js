@@ -202,6 +202,44 @@ const parkingslotsList = [
                 isAvailable: true,
             },
         ],
+        entryLeft4: [
+            {
+                slotNo: 'B401',
+                isAvailable: true,
+            },
+            {
+                slotNo: 'B402',
+                isAvailable: true,
+            },
+            {
+                slotNo: 'B403',
+                isAvailable: false,
+            },
+            {
+                slotNo: 'B404',
+                isAvailable: true,
+            },
+            {
+                slotNo: 'B405',
+                isAvailable: false,
+            },
+            {
+                slotNo: 'B406',
+                isAvailable: false,
+            },
+            {
+                slotNo: 'B407',
+                isAvailable: true,
+            },
+            {
+                slotNo: 'B408',
+                isAvailable: true,
+            },
+            {
+                slotNo: 'B409',
+                isAvailable: true,
+            },
+        ],
     }
 ];
 
@@ -211,6 +249,7 @@ const BookSlotScreen = ({ navigation }) => {
         selectedDurationIndex: 1,
         selectedPaymentModeIndex: 1,
         selectedParkingSlotNo: parkingslotsList[0].entryLeft2[0].slotNo,
+        price : 0
     })
 
     const updateState = (data) => setState((state) => ({ ...state, ...data }))
@@ -247,11 +286,11 @@ const BookSlotScreen = ({ navigation }) => {
         return (
             <TouchableOpacity
                 activeOpacity={0.9}
-                onPress={() => navigation.push('BookingSuccessfull')}
+                onPress={() => navigation.push('Mapping')}
                 style={styles.payButtonStyle}
             >
                 <Text style={{ ...Fonts.whiteColor18Bold }}>
-                    Pay $6.00
+                    Pay {state.price === 0? null : state.price }
                 </Text>
             </TouchableOpacity>
         )
@@ -282,52 +321,55 @@ const BookSlotScreen = ({ navigation }) => {
         )
     }
 
+    /*
+    * this part has been deleted
+    **/
     function afterExitSlots() {
         return (
             <View style={{ flexDirection: 'row', }}>
                 {
-                    parkingslotsList[0].entryRight1
-                        ?
-                        parkingSlotSort({
-                            slotArray: parkingslotsList[0].entryRight1,
-                            style: { borderBottomWidth: 1.0 },
-                            afterExit: true,
-                        })
-                        :
+                    // parkingslotsList[0].entryRight1
+                    //     ?
+                    //     parkingSlotSort({
+                    //         slotArray: parkingslotsList[0].entryRight1,
+                    //         style: { borderBottomWidth: 1.0 },
+                    //         afterExit: true,
+                    //     })
+                    //     :
                         null
                 }
-                <View style={{ width: 41.0, alignItems: 'center', marginHorizontal: Sizes.fixPadding * 2.0, }}>
-                    <View style={{ flex: 1, marginBottom: Sizes.fixPadding - 5.0, }}>
-                        <DashedLine
-                            axis='vertical'
-                            dashLength={25}
-                            dashThickness={1.5}
-                            dashColor={Colors.blackColor}
-                            dashGap={12}
-                            style={{ width: '100%', height: '100%', }}
-                        />
-                    </View>
-                </View>
+                {/*<View style={{ width: 41.0, alignItems: 'center', marginHorizontal: Sizes.fixPadding * 2.0, }}>*/}
+                {/*    <View style={{ flex: 1, marginBottom: Sizes.fixPadding - 5.0, }}>*/}
+                {/*        <DashedLine*/}
+                {/*            axis='vertical'*/}
+                {/*            dashLength={25}*/}
+                {/*            dashThickness={1.5}*/}
+                {/*            dashColor={Colors.blackColor}*/}
+                {/*            dashGap={12}*/}
+                {/*            style={{ width: '100%', height: '100%', }}*/}
+                {/*        />*/}
+                {/*    </View>*/}
+                {/*</View>*/}
                 {
-                    parkingslotsList[0].entryLeft2
-                        ?
-                        parkingSlotSort({
-                            slotArray: parkingslotsList[0].entryLeft2,
-                            style: { borderRightWidth: 1.0, borderBottomWidth: 1.0, borderLeftWidth: 0.0, borderBottomWidth: 1.0 },
-                            afterExit: true,
-                        })
-                        :
+                    // parkingslotsList[0].entryLeft2
+                    //     ?
+                    //     parkingSlotSort({
+                    //         slotArray: parkingslotsList[0].entryLeft2,
+                    //         style: { borderRightWidth: 1.0, borderBottomWidth: 1.0, borderLeftWidth: 0.0, borderBottomWidth: 1.0 },
+                    //         afterExit: true,
+                    //     })
+                    //     :
                         null
                 }
                 {
-                    parkingslotsList[0].entryLeft1
-                        ?
-                        parkingSlotSort({
-                            slotArray: parkingslotsList[0].entryLeft1,
-                            style: { borderBottomWidth: 1.0, },
-                            afterExit: true,
-                        })
-                        :
+                    // parkingslotsList[0].entryLeft1
+                    //     ?
+                    //     parkingSlotSort({
+                    //         slotArray: parkingslotsList[0].entryLeft1,
+                    //         style: { borderBottomWidth: 1.0, },
+                    //         afterExit: true,
+                    //     })
+                    //     :
                         null
                 }
             </View>
@@ -403,6 +445,11 @@ const BookSlotScreen = ({ navigation }) => {
             {key: 'entryRight1', value: parkingslotsList[0].entryRight1},
             {key: 'entryLeft2', value: parkingslotsList[0].entryLeft2},
             {key: 'entryLeft1', value: parkingslotsList[0].entryLeft1},
+            {key: 'entryLeft3', value: parkingslotsList[0].entryLeft3},
+            {key: 'entryLeft4', value: parkingslotsList[0].entryLeft4},
+            {key: 'entryLeft3', value: parkingslotsList[0].entryLeft3},
+            {key: 'entryLeft3', value: parkingslotsList[0].entryLeft3},
+            {key: 'entryLeft3', value: parkingslotsList[0].entryLeft3},
             {key: 'entryLeft3', value: parkingslotsList[0].entryLeft3},
             {key: 'entryLeft3', value: parkingslotsList[0].entryLeft3},
         ];
@@ -523,7 +570,7 @@ const BookSlotScreen = ({ navigation }) => {
                                     </Text>
                                     :
                                     <Image
-                                        source={require('../assets/images/cars/car4.png')}
+                                        source={require('../assets/images/cars/car5.png')}
                                         style={{ width: '100%', resizeMode: 'contain' }}
                                     />
                             }
@@ -534,36 +581,9 @@ const BookSlotScreen = ({ navigation }) => {
         )
     }
 
+    /*This part has been deleted*/
     function selectPaymentMethodInfo() {
-        return (
-            <View style={{ marginTop: Sizes.fixPadding + 5.0 }}>
-                <Text style={{ marginBottom: Sizes.fixPadding - 5.0, marginHorizontal: Sizes.fixPadding * 2.0, ...Fonts.blackColor16Regular }}>
-                    Select Payment Mode
-                </Text>
-                <View style={styles.paymentAcceptedOptionsWrapStyle}>
-                    {paymentOptionsShort({
-                        paymentIcon: require('../assets/images/paymentIcons/wallet.png'),
-                        paymentMethod: 'Wallet',
-                        index: 1,
-                    })}
-                    {paymentOptionsShort({
-                        paymentIcon: require('../assets/images/paymentIcons/payOnSpot.png'),
-                        paymentMethod: 'Pay on Spot',
-                        index: 2,
-                    })}
-                    {paymentOptionsShort({
-                        paymentIcon: require('../assets/images/paymentIcons/creditCard.png'),
-                        paymentMethod: 'Credit Card',
-                        index: 3,
-                    })}
-                    {paymentOptionsShort({
-                        paymentIcon: require('../assets/images/paymentIcons/paypal.png'),
-                        paymentMethod: 'Paypal',
-                        index: 4,
-                    })}
-                </View>
-            </View>
-        )
+        return null
     }
 
     function paymentOptionsShort({ paymentIcon, paymentMethod, index }) {
@@ -592,7 +612,7 @@ const BookSlotScreen = ({ navigation }) => {
         const renderItem = ({ item, index }) => (
             <TouchableOpacity
                 activeOpacity={0.9}
-                onPress={() => updateState({ selectedDurationIndex: index })}
+                onPress={() => updateState({ selectedDurationIndex: index , price : item.amount.toFixed(2) })}
                 style={{
                     borderColor: selectedDurationIndex == index ? 'rgba(251, 192, 45, 0.2)' : '#fcfcfc',
                     backgroundColor: selectedDurationIndex == index ? Colors.primaryColor : Colors.whiteColor,
@@ -631,12 +651,12 @@ const BookSlotScreen = ({ navigation }) => {
                     <Text style={{ ...Fonts.blackColor16Regular }}>
                         Select Vehicle
                     </Text>
-                    <Text
-                        onPress={() => navigation.push('Vehicles')}
-                        style={{ ...Fonts.primaryColor16Medium }}
-                    >
-                        Change
-                    </Text>
+                    {/*<Text*/}
+                    {/*    onPress={() => navigation.push('Vehicles')}*/}
+                    {/*    style={{ ...Fonts.primaryColor16Medium }}*/}
+                    {/*>*/}
+                    {/*    Change*/}
+                    {/*</Text>*/}
                 </View>
                 <View style={styles.carDetailWrapStyle}>
                     <View style={{ flex: 1, }}>
@@ -649,7 +669,7 @@ const BookSlotScreen = ({ navigation }) => {
                     </View>
                     <View style={{ width: width / 3.0, }}>
                         <Image
-                            source={require('../assets/images/cars/car1.png')}
+                            source={require('../assets/images/cars/car2.png')}
                             style={{ width: '100%', resizeMode: 'contain' }}
                         />
                     </View>
