@@ -5,6 +5,8 @@ import { Key } from "../constants/key";
 import { GooglePlacesAutocomplete, GooglePlaceDetail } from 'react-native-google-places-autocomplete';
 import Constants from 'expo-constants';
 import MapViewDirections from 'react-native-maps-directions';
+import {Colors} from "../constants/styles";
+import {MaterialIcons} from "@expo/vector-icons";
 
 const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
@@ -32,6 +34,7 @@ function InputAutoComplete({
     return (
         <>
             <Text>{label}</Text>
+
             <GooglePlacesAutocomplete
                 styles={{ textInput: styles.Input }}
                 placeholder={placeholder || ""}
@@ -49,7 +52,7 @@ function InputAutoComplete({
 }
 
 
-const Mapping = () => {
+const Mapping = ({navigation}) => {
     const[origin, setOrigin] = useState<LatLng | null>();
     const[destination, setDestination] = useState<LatLng | null>();
     const[showDirections, setShowDirections] = useState(false);
@@ -97,12 +100,19 @@ const Mapping = () => {
     }
     return (
         <View style={styles.container}>
+            {/*<MaterialIcons*/}
+            {/*    name="arrow-back-ios"*/}
+            {/*    color={Colors.blackColor}*/}
+            {/*    size={22}*/}
+            {/*    onPress={() => navigation.pop()}*/}
+            {/*/>*/}
             <MapView
                 ref={mapRef} 
                 style={styles.map} 
                 provider={PROVIDER_GOOGLE} 
                 initialRegion ={INTIAL_POSITION} 
             >
+
                 {origin && <Marker coordinate={origin} />}
                 {destination && <Marker coordinate={destination} />}
                 {showDirections && origin && destination && (
@@ -124,9 +134,14 @@ const Mapping = () => {
                 <InputAutoComplete label= "Destination" onPlaceSelected={(details) => {
                     onPlaceSelected(details, "destination");
                 }} />
+                <TouchableOpacity style = {styles.button} onPress = {()=>navigation.pop()} >
+                    <Text style = {styles.buttonText}>Back</Text>
+                </TouchableOpacity>
                 <TouchableOpacity style = {styles.button} onPress = {traceRoute} >
+
                     <Text style = {styles.buttonText}>Get Direction</Text>
                 </TouchableOpacity>
+
                 { distance && duration ? (
                     <View> 
                         <Text>Distance: {distance.toFixed(2)} km</Text>
@@ -149,6 +164,8 @@ const styles =  StyleSheet.create({
         height: '100%',
     },
     searchContainer: {
+        flex : 1,
+        justifyContent : "flex-start",
         position: 'absolute',
         width: '90%',
         backgroundColor: 'white',
