@@ -54,12 +54,13 @@ function InputAutoComplete({
 
 const Mapping = ({navigation}) => {
     const[origin, setOrigin] = useState<LatLng | null>();
-    const[destination, setDestination] = useState<LatLng | null>();
+    const[destination, setDestination] = useState<LatLng | null>(null);
     const[showDirections, setShowDirections] = useState(false);
     const [distance, setDistance] = useState(0);
     const [duration, setDuration] = useState(0);
 
     const mapRef = useRef<MapView>(null);
+
 
     const moveTo = async (position: LatLng) => {
         const camera = await mapRef.current?.getCamera()

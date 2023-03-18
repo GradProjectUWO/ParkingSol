@@ -239,6 +239,43 @@ const parkingslotsList = [
                 slotNo: 'B409',
                 isAvailable: true,
             },
+        ],entryLeft5: [
+            {
+                slotNo: 'B501',
+                isAvailable: true,
+            },
+            {
+                slotNo: 'B502',
+                isAvailable: true,
+            },
+            {
+                slotNo: 'B503',
+                isAvailable: false,
+            },
+            {
+                slotNo: 'B504',
+                isAvailable: true,
+            },
+            {
+                slotNo: 'B505',
+                isAvailable: false,
+            },
+            {
+                slotNo: 'B506',
+                isAvailable: false,
+            },
+            {
+                slotNo: 'B507',
+                isAvailable: true,
+            },
+            {
+                slotNo: 'B508',
+                isAvailable: true,
+            },
+            {
+                slotNo: 'B509',
+                isAvailable: true,
+            },
         ],
     }
 ];
@@ -447,7 +484,7 @@ const BookSlotScreen = ({ navigation }) => {
             {key: 'entryLeft1', value: parkingslotsList[0].entryLeft1},
             {key: 'entryLeft3', value: parkingslotsList[0].entryLeft3},
             {key: 'entryLeft4', value: parkingslotsList[0].entryLeft4},
-            {key: 'entryLeft3', value: parkingslotsList[0].entryLeft3},
+            {key: 'entryLeft5', value: parkingslotsList[0].entryLeft5},
             {key: 'entryLeft3', value: parkingslotsList[0].entryLeft3},
             {key: 'entryLeft3', value: parkingslotsList[0].entryLeft3},
             {key: 'entryLeft3', value: parkingslotsList[0].entryLeft3},
@@ -461,7 +498,7 @@ const BookSlotScreen = ({ navigation }) => {
                 horizontal={true}
                 contentContainerStyle={{ flexDirection: 'row' }}
                 renderItem={({ item }) => (
-                    <View style={{ flexDirection: 'row',}}>
+                    <View style={{ flexDirection: 'row'}}>
                         {item.value ? parkingSlotSort({ slotArray: item.value, style: { borderRightWidth: 1.0, borderBottomWidth: 1.0, borderLeftWidth: 0.0, çborderBottomWidth: 1.0 } }) : null}
                         {item.key==='entryRight1'? entryInfo():null}
                     </View>

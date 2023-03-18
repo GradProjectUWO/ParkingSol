@@ -8,7 +8,7 @@ export default class Mainpage extends React.Component {
 
                 <Text>This is a Mainpage Screen where you can make selections!</Text>
                 
-                <View style={[{ width: "90%", margin: 20, backgroundColor: "black" }]}>
+                <View style={[{ width: "90%", margin: 20 }]}>
                     <Button
                         onPress={() => this.props.navigation.navigate('Booking')}
                         title="Go to Booking"
@@ -17,7 +17,7 @@ export default class Mainpage extends React.Component {
                     />
                 </View> 
 
-                <View style={[{ width: "90%", margin: 20, backgroundColor: "red" }]}>
+                <View style={[{ width: "90%", margin: 20 }]}>
                     <Button
                         onPress={() => this.props.navigation.navigate('Mapping')}
                         title="Go to Mapping"
@@ -25,7 +25,7 @@ export default class Mainpage extends React.Component {
                     />  
                 </View>
 
-                <View style={[{ width: "90%", margin: 20, backgroundColor: "red" }]}>
+                <View style={[{ width: "90%", margin: 20 }]}>
                     <Button
                         onPress={() => this.props.navigation.navigate('Profile')}
                         title="Go to Profile"
